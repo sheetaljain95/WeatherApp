@@ -11,8 +11,8 @@ struct Home: View {
     @State var offset: CGFloat = 0
     var topEdge: CGFloat = 0
     var body: some View {
-        var data = ExampleData()
-        var dayWeather = data.daysWeather
+        let data = ExampleData()
+        let dayWeather = data.daysWeather
         ZStack {
             GeometryReader { proxy in
                 Image("sky")

@@ -6,13 +6,7 @@
 //
 
 import SwiftUI
-/*
-case partlyClouded = "Partially Clouded"
-case clouded = "Clouded"
-case sunny = "Sunny"
-case raining = "Raining"
-case snowing = "Snowing"
-*/
+
 struct ForecastView: View {
     let item: DaysWeather
    
