@@ -9,58 +9,9 @@ import SwiftUI
 
 struct WeatherDataView: View {
     var body: some View {
-        var data = ExampleData()
-        var forecast = data.weeksWeather
-        
-        VStack(spacing: 8) {
-            CustomStackView{
-                Label{
-                    Text("10 - Day Forecast")
-                } icon: {
-                    Image(systemName: "calendar")
-                }
-            } contentView: {
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(forecast) { cast in
-                        HStack(spacing: 15) {
-                            Text(cast.day!)
-                                .font(.caption.bold())
-                                .foregroundStyle(.white)
-                                .frame(width: 60, alignment: .leading)
-                            
-                            
-                            Image(systemName: getImage(weather: cast.clouds ?? .partlyClouded))
-                                .font(.title3)
-                                .symbolVariant(.fill)
-                                .frame(width: 60, alignment: .leading)
-                                .symbolRenderingMode(.palette)
-                                .foregroundStyle(.white)
-                            Text(cast.low!)
-                                .font(.caption.bold())
-                                .foregroundStyle(.white)
-                            ZStack(alignment: .leading) {
-                                Capsule()
-                                    .fill(.tertiary)
-                                    .foregroundStyle(.white)
-                                    .frame(width: 80, height: 3)
-                                
-                                //GeometryReader { proxy in
-                                Capsule()
-                                    .fill(.linearGradient(.init(colors: [.green ,.yellow, .orange]), startPoint: .leading, endPoint: .trailing))
-                                    .frame(width: 70, height: 3)
-                                // }
-                                
-                            }
-                            Text(cast.high!)
-                                .font(.caption.bold())
-                                .foregroundStyle(.white)
-                                .frame(height: 3)
-                        }
-                        Divider()
-                    }
-                }
-            }
-            
+        // 10 days Forecast
+        TenDayForecastView()
+         
             CustomStackView {
                 Label {
                     Text("Air Quality")
@@ -116,19 +67,17 @@ struct WeatherDataView: View {
                         Image("sun.min")
                     }
                 } contentView: {
-                    VStack(alignment: .leading, spacing: 2) {
+                    VStack(alignment: .leading, spacing: 5) {
                         Text("4")
                             .font(.title)
                             .fontWeight(.semibold)
                         Text("Moderate")
                             .font(.title2)
                             .fontWeight(.semibold)
-                        padding()
                         ZStack(alignment: .leading) {
-                            GeometryReader { proxy in
                                 Capsule()
                                     .fill(.linearGradient(.init(colors: [.green ,.yellow, .orange,.red]), startPoint: .leading, endPoint: .trailing))
-                                    .frame(width: proxy.size.width, height: 4)
+                                    .frame(width: 120, height: 4)
                                 Capsule()
                                     .fill(.primary)
                                     .foregroundStyle(.white)
@@ -136,8 +85,7 @@ struct WeatherDataView: View {
                                     .border(.blue)
                                     .offset(x: 40)
                             }
-                        }
-                        Text("Use sun protection")
+                        Text("Use sun protection till 4 pm")
                             .font(.caption)
                             .fontWeight(.semibold)
                     }
@@ -207,9 +155,8 @@ struct WeatherDataView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity,alignment: .leading)
                 }
             }
+          
         }
-    }
-    
     func getImage(weather: Cloud) -> String {
         switch weather {
         case .partlyClouded:
@@ -224,7 +171,6 @@ struct WeatherDataView: View {
             return "snow"
         }
     }
-    
 }
 
 struct WeatherDataView_Previews: PreviewProvider {
