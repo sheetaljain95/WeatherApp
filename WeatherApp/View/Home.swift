@@ -28,7 +28,8 @@ struct Home: View {
                         ShowCurrentWeatherView(offset: $offset)
                     }
                     .offset(y: -offset)
-                       
+                    .offset(y: offset > 0 ? (offset / UIScreen.main.bounds.width) * 100 : 0)
+                                     
                     VStack(spacing: 8) {
                         CustomStackView {
                             Label {
