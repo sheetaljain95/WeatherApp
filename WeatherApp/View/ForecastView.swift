@@ -6,20 +6,28 @@
 //
 
 import SwiftUI
-
+/*
+case partlyClouded = "Partially Clouded"
+case clouded = "Clouded"
+case sunny = "Sunny"
+case raining = "Raining"
+case snowing = "Snowing"
+*/
 struct ForecastView: View {
     let item: DaysWeather
-
+   
     var body: some View {
+        let imageName = getImage(weather: item.clouds ?? .partlyClouded)
         HStack(spacing: 15) {
             VStack(spacing: 15) {
-                Text(item.low!)
+                
+                Text(item.time!)
                     .font(.callout.bold())
                     .foregroundStyle(.white)
-                Image(systemName: "sun.min")
+                Image(systemName: imageName)
                     .font(.title2)
                     .symbolVariant(.fill)
-                    .foregroundStyle(.white, .yellow)
+                    .foregroundStyle(.white)
                     .frame(height: 30)
                     .symbolRenderingMode(.palette)
                 Text(item.high!)
@@ -28,5 +36,21 @@ struct ForecastView: View {
             }
         }
     }
+    
+    func getImage(weather: Cloud) -> String {
+        switch weather {
+        case .partlyClouded:
+            return "cloud.sun"
+        case .clouded:
+            return "cloud.rain.fill"
+        case .sunny:
+            return "sun.min.fill"
+        case .raining:
+            return "cloud.rain"
+        case .snowing:
+            return "snow"
+        }
+    }
+
 }
 

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Home: View {
     @State var offset: CGFloat = 0
+    var topEdge: CGFloat = 0
     var body: some View {
         var data = ExampleData()
         var dayWeather = data.daysWeather
@@ -24,8 +25,11 @@ struct Home: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
                     VStack(alignment: .center, spacing: 5) {
-                        ShowCurrentWeatherView()
-                    }
+                        ShowCurrentWeatherView(offset: $offset)
+                    }.offset(y: -offset)
+                        .offset(y: offset > 0 ? (offset / UIScreen.main.bounds.width) * 100 : 0)
+                        .offset(y: getTitleOffset())
+                    
                     VStack(spacing: 8) {
                         CustomStackView {
                             Label {
@@ -33,15 +37,19 @@ struct Home: View {
                             } icon: {
                                 Image(systemName: "clock")
                             }
-                        } contentView: {
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 30){
-                                    ForEach(dayWeather) { item in
-                                        ForecastView(item: item)
-                                    }
+                        }
+                    contentView: {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 30){
+                                ForEach(dayWeather) { item in
+                                    ForecastView(item: item)
                                 }
                             }
                         }
+                        
+                    }
+                        WeatherDataView()
+                        
                     }
                 }
                 .padding(.top,25)
@@ -49,16 +57,28 @@ struct Home: View {
                 .overlay(
                     GeometryReader { proxy -> Color in
                         let minY = proxy.frame(in: .global).minY
+                        DispatchQueue.main.async {
+                            self.offset = minY
+                        }
                         return Color.clear
                     }
                 )
             }
         }
     }
-}
-
-struct Home_Previews: PreviewProvider {
-    static var previews: some View {
-        Home()
+    func getTitleOpacity() -> CGFloat {
+        let titleOffset = getTitleOffset()
+        let progress = titleOffset/20
+        let opacity = 1 - progress
+        return opacity
+    }
+    
+    func getTitleOffset() -> CGFloat{
+        if offset < 0 {
+            let progress = offset / 120
+            let newOffset = (progress <= 1.0 ? progress : 1) * 20
+            return newOffset
+        }
+        return 0
     }
 }

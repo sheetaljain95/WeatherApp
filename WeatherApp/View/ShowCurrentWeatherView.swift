@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ShowCurrentWeatherView: View {
     var currentWeather = ExampleData.currentWeather
-
+    @Binding var offset: CGFloat
     var body: some View {
         
         VStack{
@@ -18,30 +18,25 @@ struct ShowCurrentWeatherView: View {
                 .foregroundStyle(.white)
                 .shadow(radius: 5)
             Text((currentWeather.weather?.current)!)
-                .font(.system(size: 80))
+                .font(.system(size: 45))
                 .foregroundStyle(.white)
                 .shadow(radius: 5)
             Text((currentWeather.weather?.clouds!.rawValue)!)
-                .font(.system(size: 20))
+                .foregroundStyle(.secondary)
                 .foregroundStyle(.white)
                 .shadow(radius: 5)
-            HStack {
-                Text("H: \((currentWeather.weather?.high)!)")
-                    .font(.system(size: 16))
-                    .foregroundStyle(.white)
-                    .shadow(radius: 5)
-                Text("L: \((currentWeather.weather?.low)!)")
-                    .font(.system(size: 16))
-                    .foregroundStyle(.white)
-                    .shadow(radius: 5)
-            }
-            .padding(4)
+            Text("H: \((currentWeather.weather?.high)!) L: \((currentWeather.weather?.low)!)")
+                .foregroundStyle(.primary)
+                .foregroundStyle(.white)
+                .shadow(radius: 5)
         }
     }
-}
-
-struct ShowCurrentWeatherView_Previews: PreviewProvider {
-    static var previews: some View {
-        ShowCurrentWeatherView()
+    func getTitleOffset() -> CGFloat{
+        if offset < 0 {
+            let progress = offset / 120
+            let newOffset = (progress <= 1.0 ? progress : 1) * 20
+            return newOffset
+        }
+        return 0
     }
 }
