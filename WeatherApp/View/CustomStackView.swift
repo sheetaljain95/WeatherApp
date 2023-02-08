@@ -29,7 +29,7 @@ struct CustomStackView<Title: View, Content: View>: View {
                 .background(.ultraThinMaterial, in:CustomCorner(corners: bottomOffset < 38 ? .allCorners : [.topLeft, .topRight], radius: 12))
                 .zIndex(1)
             VStack {
-                //Divider()
+                Divider()
                 contentView
                     .padding()
             }
