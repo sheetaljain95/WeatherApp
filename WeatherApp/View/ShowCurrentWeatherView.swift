@@ -21,7 +21,7 @@ struct ShowCurrentWeatherView: View {
                     .shadow(radius: 5)
                     .opacity(getTitleOpacityForTextTwo())
                 
-                Text("H: \((currentWeather.weather?.high)!) L: \((currentWeather.weather?.low)!)")
+                Text("H: \((currentWeather.weather?.high)!) | \((currentWeather.weather?.clouds!.rawValue)!)")
                     .foregroundStyle(.primary)
                     .foregroundStyle(.white)
                     .shadow(radius: 5)
