@@ -26,7 +26,8 @@ struct Home: View {
                 VStack {
                     VStack(alignment: .center, spacing: 10) {
                         ShowCurrentWeatherView(offset: $offset)
-                    }.offset(y: -offset)
+                    }
+                    .offset(y: -offset)
                        
                     VStack(spacing: 8) {
                         CustomStackView {
@@ -63,12 +64,6 @@ struct Home: View {
                 )
             }
         }
-    }
-    func getTitleOpacity() -> CGFloat {
-        let titleOffset = getTitleOffset()
-        let progress = titleOffset/20
-        let opacity = 1 - progress
-        return opacity
     }
     
     func getTitleOffset() -> CGFloat{
