@@ -32,7 +32,7 @@ struct Home: View {
                     VStack(spacing: 8) {
                         CustomStackView {
                             Label {
-                                Text("Hourly Forecast")
+                                Text("Clear Conditions would remain")
                             } icon: {
                                 Image(systemName: "clock")
                             }
