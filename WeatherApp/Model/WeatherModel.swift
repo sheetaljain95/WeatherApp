@@ -9,32 +9,32 @@ import Foundation
 
 struct WeatherModel {
     var id: UUID
-    var city: String?
-    var weather: CurrentWeather?
+    var city: String
+    var weather: CurrentWeather
 }
 
 struct CurrentWeather {
     var id: UUID
-    var current : String?
-    var high : String?
-    var low : String?
-    var clouds: Cloud?
+    var current : String
+    var high : String
+    var low : String
+    var clouds: Cloud
 }
 
 struct DaysWeather: Identifiable {
     var id: UUID
-    var time : String?
-    var high : String?
-    var low : String?
-    var clouds: Cloud?
+    var time : String
+    var high : String
+    var low : String
+    var clouds: Cloud
 }
 
 struct WeeksWeather: Identifiable {
     var id: UUID
-    var day : String?
-    var high : String?
-    var low : String?
-    var clouds: Cloud?
+    var day : String
+    var high : String
+    var low : String
+    var clouds: Cloud
 }
 
 enum Cloud: String {

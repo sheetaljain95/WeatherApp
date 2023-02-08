@@ -24,7 +24,7 @@ struct TenDayForecastView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(forecast) { cast in
                         HStack(spacing: 15) {
-                            Text(cast.day!)
+                            Text(cast.day)
                                 .font(.caption.bold())
                                 .foregroundStyle(.white)
                                 .frame(width: 60, alignment: .leading)
@@ -36,7 +36,7 @@ struct TenDayForecastView: View {
                                 .frame(width: 60, alignment: .leading)
                                 .symbolRenderingMode(.palette)
                                 .foregroundStyle(.white)
-                            Text(cast.low!)
+                            Text(cast.low)
                                 .font(.caption.bold())
                                 .foregroundStyle(.white)
                             ZStack(alignment: .leading) {
@@ -52,7 +52,7 @@ struct TenDayForecastView: View {
                                 // }
                                 
                             }
-                            Text(cast.high!)
+                            Text(cast.high)
                                 .font(.caption.bold())
                                 .foregroundStyle(.white)
                                 .frame(height: 3)

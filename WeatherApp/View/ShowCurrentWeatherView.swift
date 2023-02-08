@@ -11,45 +11,45 @@ struct ShowCurrentWeatherView: View {
     var currentWeather = ExampleData.currentWeather
     @Binding var offset: CGFloat
     var body: some View {
-        
         if (offset <= -120) {
             VStack(spacing: 10){
                 Spacer()
-                Text(currentWeather.city!)
+                Text(currentWeather.city)
                     .font(.system(size: 35))
                     .foregroundStyle(.white)
                     .shadow(radius: 5)
                     .opacity(getTitleOpacityForTextTwo())
                 
-                Text("H: \((currentWeather.weather?.high)!) | \((currentWeather.weather?.clouds!.rawValue)!)")
+                Text("H: \(currentWeather.weather.high) | \(currentWeather.weather.clouds.rawValue)")
                     .foregroundStyle(.primary)
                     .foregroundStyle(.white)
                     .shadow(radius: 5)
                     .opacity(getTitleOpacityForTextTwo())
             }
+            
         }
         else {
             VStack(spacing: 10){
                 Spacer()
-                Text(currentWeather.city!)
+                Text(currentWeather.city)
                     .font(.system(size: 35))
                     .foregroundStyle(.white)
                     .shadow(radius: 5)
                     .opacity(getTitleOpacity())
                 
-                Text((currentWeather.weather?.current)!)
+                Text(currentWeather.weather.current)
                     .font(.system(size: 80))
                     .foregroundStyle(.white)
                     .shadow(radius: 5)
                     .opacity(getTitleOpacity())
                 
-                Text((currentWeather.weather?.clouds!.rawValue)!)
+                Text(currentWeather.weather.clouds.rawValue)
                     .foregroundStyle(.secondary)
                     .foregroundStyle(.white)
                     .shadow(radius: 5)
                     .opacity(getTitleOpacity())
                 
-                Text("H: \((currentWeather.weather?.high)!) L: \((currentWeather.weather?.low)!)")
+                Text("H: \(currentWeather.weather.high) L: \(currentWeather.weather.low)")
                     .foregroundStyle(.primary)
                     .foregroundStyle(.white)
                     .shadow(radius: 5)

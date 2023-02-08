@@ -15,7 +15,7 @@ struct ForecastView: View {
         HStack(spacing: 15) {
             VStack(spacing: 15) {
                 
-                Text(item.time!)
+                Text(item.time)
                     .font(.callout.bold())
                     .foregroundStyle(.white)
                 Image(systemName: imageName)
@@ -24,7 +24,7 @@ struct ForecastView: View {
                     .foregroundStyle(.white)
                     .frame(height: 30)
                     .symbolRenderingMode(.palette)
-                Text(item.high!)
+                Text(item.high)
                     .font(.callout.bold())
                     .foregroundStyle(.white)
             }
