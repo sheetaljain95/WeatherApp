@@ -24,12 +24,10 @@ struct Home: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
-                    VStack(alignment: .center, spacing: 5) {
+                    VStack(alignment: .center, spacing: 10) {
                         ShowCurrentWeatherView(offset: $offset)
                     }.offset(y: -offset)
-                        .offset(y: offset > 0 ? (offset / UIScreen.main.bounds.width) * 100 : 0)
-                        .offset(y: getTitleOffset())
-                    
+                       
                     VStack(spacing: 8) {
                         CustomStackView {
                             Label {
