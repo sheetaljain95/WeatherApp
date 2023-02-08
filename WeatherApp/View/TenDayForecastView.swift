@@ -9,8 +9,8 @@ import SwiftUI
 
 struct TenDayForecastView: View {
     var body: some View {
-        var data = ExampleData()
-        var forecast = data.weeksWeather
+        let data = ExampleData()
+        let forecast = data.weeksWeather
         
 
         VStack(spacing: 8) {

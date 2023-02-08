@@ -11,7 +11,7 @@ struct ForecastView: View {
     let item: DaysWeather
    
     var body: some View {
-        let imageName = getImage(weather: item.clouds ?? .partlyClouded)
+        let imageName = getImage(weather: item.clouds)
         HStack(spacing: 15) {
             VStack(spacing: 15) {
                 
